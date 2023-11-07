@@ -80,6 +80,7 @@
 					<button class="btn btnreset" type="submit" name="reset_task">Réinitialiser</button>
 				</form>
 				<ul class="tasks" id="tasks{{ column_index }}" ondrop="drop(event, {{ column_index }})" ondragover="allowDrop(event)">
+					<li class="hidden"></li>
 					{% for task_index, task in column['tasks'] %}
 						<li class="task" id="task{{ column_index }}{{ task_index }}" draggable="true" ondragstart="drag(event)">
 							{{ task }}
