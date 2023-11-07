@@ -1,0 +1,44 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}TRELLO LIKE
+{% endblock %}
+
+{% block content %}
+
+	<div class="slogan">
+		<nav id='menu'>
+			<input type='checkbox' id='responsive-menu' onclick='updatemenu()'><label></label>
+			<ul>
+				<li><a href='http://'>Trello Like</a></li>
+				<li><a href='http://'>About</a></li>
+				<li><a href='http://'>Contact Us</a></li>
+			</ul>
+		</nav>
+	</div>
+
+	<form class="addColumns" method="POST">
+		<input class="column_title" type="text" name="column_title" placeholder="Ajouter une colonne ici">
+		<button class="btn btncolumn" type="submit" name="add_column">Ajouter une colonne</button>
+		<button class="btn btnreset" type="submit" name="reset">Réinitialiser</button>
+	</form>
+	<main>
+		{% for column_index, column in columns %}
+			<div class="child">
+				<h2>{{ column['title'] }}</h2>
+				<form class="addTasks" method="POST">
+					<input class="column_title" type="text" name="task_description" placeholder="Ajouter une tâche ici">
+					<input class="column_title" type="hidden" name="column_index" value="{{ column_index }}">
+					<br>
+					<button class="btn btntasks" type="submit" name="add_task">Ajouter Tâche</button>
+					<button class="btn btnreset" type="submit" name="reset_task">Réinitialiser</button>
+
+				</form>
+				<ul>
+					{% for task in column['tasks'] %}
+						<li>{{ task }}</li>
+					{% endfor %}
+				</ul>
+			</div>
+		{% endfor %}
+	</main>
+{% endblock %}
